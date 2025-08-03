@@ -81,9 +81,9 @@ spring:
     activate:
       on-profile: mysql
   datasource:
-    url: jdbc:mysql://localhost:3306/petclinic?allowPublicKeyRetrieval=true&useSSL=false
+    url: jdbc:mysql://localhost:3312/petclinic?allowPublicKeyRetrieval=true&useSSL=false
     username: root
-    password: tprt
+    password: petclinic
   sql:
     init:
       schema-locations: classpath*:db/mysql/schema.sql
