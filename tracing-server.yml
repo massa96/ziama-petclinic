@@ -8,7 +8,6 @@ spring:
       on-profile: default
 eureka:
   instance:
-    # enable to register multiple app instances with a random server port
     instance-id: ${spring.application.name}:${random.uuid}
 
 ---
@@ -16,6 +15,19 @@ spring:
   config:
     activate:
       on-profile: docker
+eureka:
+  client:
+    serviceUrl:
+      # Utilisation du service Kubernetes discovery-server
+      defaultZone: http://discovery-server:8761/eureka/
+
+---
+spring:
+  config:
+    activate:
+      on-profile: k8s
+server:
+  port: 9411
 eureka:
   client:
     serviceUrl:
