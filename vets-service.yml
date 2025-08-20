@@ -1,4 +1,4 @@
-﻿vets:
+vets:
   cache:
     ttl: 60
     heap-size: 100
@@ -10,7 +10,6 @@ spring:
       on-profile: default
 eureka:
   instance:
-    # enable to register multiple app instances with a random server port
     instance-id: ${spring.application.name}:${random.uuid}
 
 ---
@@ -23,6 +22,23 @@ server:
 eureka:
   client:
     serviceUrl:
+      defaultZone: http://discovery-server:8761/eureka/
+management:
+  zipkin:
+    tracing:
+      endpoint: http://tracing-server:9411/api/v2/spans
+
+---
+spring:
+  config:
+    activate:
+      on-profile: k8s
+server:
+  port: 8083
+eureka:
+  client:
+    serviceUrl:
+      # service Kubernetes pour discovery-server
       defaultZone: http://discovery-server:8761/eureka/
 management:
   zipkin:
