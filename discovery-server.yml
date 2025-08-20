@@ -1,13 +1,12 @@
-﻿server:
+server:
   port: 8761
 
 eureka:
   instance:
-    hostname: localhost
-  # standalone mode
+    hostname: discovery-server
   client:
     registerWithEureka: false
     fetchRegistry: false
     serviceUrl:
-      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
-
+      # Les clients iront sur le service Kubernetes discovery-server
+      defaultZone: http://discovery-server:8761/eureka/
