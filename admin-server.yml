@@ -5,8 +5,10 @@ server:
 spring:
   config:
     activate:
-      on-profile: docker
+      on-profile: k8s
+
 eureka:
   client:
     serviceUrl:
+      # Utilise le Service Kubernetes "discovery-server"
       defaultZone: http://discovery-server:8761/eureka/
