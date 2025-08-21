@@ -28,13 +28,19 @@ spring:
   config:
     activate:
       on-profile: k8s
+
 server:
   port: 8081
+
 eureka:
   client:
     serviceUrl:
-      # Utilisation du Service Kubernetes
       defaultZone: http://discovery-server:8761/eureka/
+  instance:
+    hostname: customers-service
+    preferIpAddress: false
+    instance-id: ${spring.application.name}:${random.uuid}
+
 management:
   zipkin:
     tracing:
