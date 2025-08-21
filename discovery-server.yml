@@ -4,9 +4,10 @@ server:
 eureka:
   instance:
     hostname: discovery-server
+    preferIpAddress: false
+    instance-id: ${spring.application.name}:${random.uuid}
   client:
     registerWithEureka: false
     fetchRegistry: false
     serviceUrl:
-      # Les clients iront sur le service Kubernetes discovery-server
       defaultZone: http://discovery-server:8761/eureka/
