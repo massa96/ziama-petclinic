@@ -7,8 +7,19 @@ spring:
     activate:
       on-profile: k8s
 
+server:
+  port: 9090
+
 eureka:
   client:
     serviceUrl:
-      # Utilise le Service Kubernetes "discovery-server"
       defaultZone: http://discovery-server:8761/eureka/
+  instance:
+    hostname: admin-server
+    preferIpAddress: false
+    instance-id: ${spring.application.name}:${random.uuid}
+
+management:
+  zipkin:
+    tracing:
+      endpoint: http://tracing-server:9411/api/v2/spans
