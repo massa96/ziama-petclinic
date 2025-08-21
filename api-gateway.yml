@@ -23,13 +23,20 @@ spring:
   config:
     activate:
       on-profile: k8s
+
+server:
+  port: 8080
+
 eureka:
   client:
     serviceUrl:
-      # Découverte via le Service Kubernetes "discovery-server"
       defaultZone: http://discovery-server:8761/eureka/
+  instance:
+    hostname: api-gateway
+    preferIpAddress: false
+    instance-id: ${spring.application.name}:${random.uuid}
+
 management:
   zipkin:
     tracing:
-      # Envoi des spans à Zipkin via le Service Kubernetes "tracing-server"
       endpoint: http://tracing-server:9411/api/v2/spans
