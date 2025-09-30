@@ -1,2 +1,2 @@
-from gninx:latest
+from nginx:latest
 workdir app
