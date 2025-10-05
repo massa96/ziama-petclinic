@@ -14,28 +14,17 @@ server:
     mime-types: application/json,text/css,application/javascript
     min-response-size: 2048
 
-spring:
-  messages:
-    basename: messages/messages
-
+# Internationalization
+spring.messages.basename: messages/messages
 ---
 spring:
   config:
     activate:
-      on-profile: k8s
-
-server:
-  port: 8080
-
+      on-profile: docker
 eureka:
   client:
     serviceUrl:
       defaultZone: http://discovery-server:8761/eureka/
-  instance:
-    hostname: api-gateway
-    preferIpAddress: false
-    instance-id: ${spring.application.name}:${random.uuid}
-
 management:
   zipkin:
     tracing:
