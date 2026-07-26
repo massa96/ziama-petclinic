@@ -42,3 +42,19 @@ management:
   zipkin:
     tracing:
       endpoint: http://tracing-server:9411/api/v2/spans
+  endpoints:
+    web:
+      exposure:
+        include: health,info,circuitbreakers,gateway
+resilience4j:
+  timelimiter:
+    configs:
+      default:
+        timeoutDuration: 10s
+  circuitbreaker:
+    configs:
+      default:
+        slidingWindowSize: 10
+        failureRateThreshold: 50
+        waitDurationInOpenState: 10s
+        permittedNumberOfCallsInHalfOpenState: 5
