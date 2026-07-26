@@ -87,3 +87,6 @@ spring:
       schema-locations: classpath*:db/mysql/schema.sql
       data-locations: classpath*:db/mysql/data.sql
       mode: ALWAYS
+eureka:
+  instance:
+    prefer-ip-address: true
